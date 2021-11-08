@@ -26,5 +26,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-unused-vars': 'off',
     'func-names': 'off',
+    'react/jsx-no-bind': 'off',
   },
 };
