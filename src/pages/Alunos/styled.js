@@ -22,6 +22,7 @@ export const AlunosContainer = styled.div`
   .acoes .delete {
     color: red;
     margin-left: 5px;
+    margin-right: 5px;
   }
 `;
 
