@@ -27,5 +27,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'func-names': 'off',
     'react/jsx-no-bind': 'off',
+    'require-yield': 'off',
   },
 };
