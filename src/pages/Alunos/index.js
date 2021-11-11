@@ -78,7 +78,7 @@ export default function Alunos() {
               {get(aluno, 'Fotos[0].url', false) ? (
                 <img src={aluno.Fotos[0].url} alt="" />
               ) : (
-                <FaUserCircle size={50} />
+                <FaUserCircle color="#d1d1d1" size={50} />
               )}
             </ProfilePicture>
 

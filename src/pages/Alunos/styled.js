@@ -31,6 +31,7 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 42px;
   font-weight: 400;
+  color: #262626;
 `;
 
 export const ProfilePicture = styled.div`
