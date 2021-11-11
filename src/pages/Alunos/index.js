@@ -87,11 +87,11 @@ export default function Alunos() {
 
             <div className="acoes">
               <Link to={`/alunos/${aluno.id}/edit`}>
-                <FaEdit size={16} />
+                <FaEdit size={22} className="edit" />
               </Link>
 
               <Link onClick={handleDeleteAsk} to={`/alunos/${aluno.id}/delete`}>
-                <FaWindowClose size={16} className="delete" />
+                <FaWindowClose size={22} className="delete" />
               </Link>
               <FaExclamationCircle
                 fontSize={16}

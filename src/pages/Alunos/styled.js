@@ -21,9 +21,15 @@ export const AlunosContainer = styled.div`
   }
 
   .acoes .delete {
-    color: red;
+    color: brown;
     margin-left: 5px;
     margin-right: 5px;
+  }
+
+  @media (max-width: 524px) {
+    div {
+      flex-flow: column;
+    }
   }
 `;
 
@@ -46,4 +52,8 @@ export const NewAluno = styled(Link)`
   display: block;
   padding: 10px;
   text-align: right;
+
+  @media (max-width: 524px) {
+    text-align: center;
+  }
 `;

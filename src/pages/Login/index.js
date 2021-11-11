@@ -12,7 +12,7 @@ import Loading from '../../components/Loading';
 export default function Login(props) {
   const dispatch = useDispatch();
 
-  const prevPath = get(props, 'location.state.prevPath', '/');
+  const prevPath = get(props, 'location.state.prevPath', '/alunos');
 
   const isLoading = useSelector((state) => state.auth.isLoading);
 
