@@ -10,7 +10,7 @@ import {
 
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/GobalStyles';
-import { AlunosContainer, ProfilePicture, Title } from './styled';
+import { AlunosContainer, ProfilePicture, Title, NewAluno } from './styled';
 
 import Loading from '../../components/Loading';
 
@@ -66,6 +66,11 @@ export default function Alunos() {
       <Loading isLoading={isLoading} />
 
       <Title>Alunos</Title>
+
+      <NewAluno to="/aluno/">
+        <button type="button">Novo Aluno</button>
+      </NewAluno>
+
       <AlunosContainer>
         {alunos.map((aluno, index) => (
           <div key={String(aluno.id)}>
