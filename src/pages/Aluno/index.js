@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { isEmail, isInt, isFloat } from 'validator';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
 import { Container } from '../../styles/GobalStyles';
 import { Form } from './styled';
@@ -10,7 +11,10 @@ import Loading from '../../components/Loading';
 import axios from '../../services/axios';
 import history from '../../services/history';
 
+import * as actions from '../../store/modules/auth/actions';
+
 export default function Aluno({ match }) {
+  const dispatch = useDispatch();
   const id = get(match, 'params.id', 0);
 
   /** setar o estado */
@@ -54,10 +58,11 @@ export default function Aluno({ match }) {
   }, [id]);
 
   /** método responsável por validar e enviar o formulário */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formError = false;
 
+    /** tratamento dos erros de formulaŕio */
     if (nome.length < 3 || nome.length > 255) {
       toast.error('Nome precisa ter entre 3 e 50 caracteres!', {
         toastId: 'nome_err',
@@ -92,6 +97,59 @@ export default function Aluno({ match }) {
     if (!isFloat(String(altura))) {
       toast.error('Altura inválido!', { toastId: 'altura_err' });
       formError = true;
+    }
+
+    if (formError) return;
+
+    /** editar ou cadastrar usuarios */
+    try {
+      setIsLoading(true);
+
+      if (id) {
+        // editar
+        await axios.put(`/alunos/${id}`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        toast.success('Aluno(a) editado(a) com sucesso! ;)', {
+          toastId: 'success_edit',
+        });
+      } else {
+        // criar
+        const { data } = await axios.post(`/alunos/`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        toast.success('Aluno(a) criado(a) com sucesso! ;)', {
+          toastId: 'success_create',
+        });
+        history.push(`/alunos/${data.id}/edit`);
+      }
+
+      setIsLoading(false);
+
+      /** tratamento dos erros de requisição */
+    } catch (err) {
+      setIsLoading(false);
+      const status = get(err, 'response.status', 0);
+      const data = get(err, 'response.data', {});
+      const errors = get(data, 'errors', []);
+
+      if (errors.length > 0) {
+        errors.map((erro) => toast.error(erro, { toastId: 'err_api' }));
+      } else {
+        toast.error('Erro desconhecido', { toastId: 'unkowladge_err' });
+      }
+
+      if (status === 401) dispatch(actions.loginFailure());
     }
   };
 
