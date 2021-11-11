@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaHome, FaSignInAlt, FaUserAlt, FaPowerOff } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -21,22 +20,24 @@ export default function Header() {
 
   return (
     <Nav>
-      <Link to="/">
-        <FaHome size={24} />
-      </Link>
-      <Link to="/register">
-        <FaUserAlt size={24} />
-      </Link>
       {isLoggedIn ? (
-        <Link onClick={handleLogout} to="/logout">
-          <FaPowerOff size={24} />
-        </Link>
+        <>
+          <span className="nome--header">Olá, {nome}</span>
+          <Link onClick={handleLogout} to="/logout">
+            Sair
+          </Link>
+        </>
       ) : (
-        <Link to="/login">
-          <FaSignInAlt size={24} />
-        </Link>
+        <>
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">
+            <button type="button" className="btn">
+              registrar-se
+            </button>
+          </Link>
+        </>
       )}
-      {isLoggedIn && `Olá, ${nome}`}
     </Nav>
   );
 }

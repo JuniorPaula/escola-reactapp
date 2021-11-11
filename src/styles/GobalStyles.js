@@ -28,6 +28,7 @@ export default createGlobalStyle`
     padding: 10px 18px;
     font-size: 18px;
     transition: all 300ms;
+    border-radius: 5px;
   }
 
   button:hover {
