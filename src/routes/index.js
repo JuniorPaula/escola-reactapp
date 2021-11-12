@@ -3,6 +3,7 @@ import { Switch } from 'react-router-dom';
 
 import MyRoute from './MyRoute';
 
+import User from '../pages/User';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Aluno from '../pages/Aluno';
@@ -15,6 +16,7 @@ export default function Rotas() {
   return (
     <Switch>
       <MyRoute exact path="/" component={Home} isClosed={false} />
+      <MyRoute exact path="/users" component={User} isClosed />
       <MyRoute exact path="/alunos" component={Alunos} isClosed />
       <MyRoute exact path="/alunos/:id/edit" component={Aluno} isClosed />
       <MyRoute exact path="/aluno/" component={Aluno} isClosed />

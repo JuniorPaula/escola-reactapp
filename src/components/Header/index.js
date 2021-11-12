@@ -23,6 +23,7 @@ export default function Header() {
       {isLoggedIn ? (
         <>
           <span className="nome--header">Olá, {nome}</span>
+          <Link to="/users">Editar usuário</Link>
           <Link to="/alunos">Alunos</Link>
           <Link onClick={handleLogout} to="/logout">
             Sair
